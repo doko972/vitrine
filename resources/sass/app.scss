@@ -1,0 +1,22 @@
+// ─── Variables & Base ────────────────────────────────────────────────────────
+@use 'components/variables' as *;
+@use 'components/base';
+@use 'components/buttons';
+
+// ─── Layout ──────────────────────────────────────────────────────────────────
+@use 'components/header';
+@use 'components/footer';
+
+// ─── Pages vitrine ───────────────────────────────────────────────────────────
+@use 'components/hero';
+@use 'components/sections';
+@use 'components/cards';
+@use 'components/contact';
+@use 'components/gallery';
+@use 'components/team';
+
+// ─── Auth ─────────────────────────────────────────────────────────────────────
+@use 'components/auth';
+
+// ─── Dashboard ───────────────────────────────────────────────────────────────
+@use 'components/dashboard';

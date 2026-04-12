@@ -1,0 +1,80 @@
+@use 'variables' as *;
+// ─── Pages Auth (Login / Register) ───────────────────────────────────────────
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-xl $spacing-md;
+    background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background-color: #fff;
+    border-radius: $radius-xl;
+    padding: $spacing-2xl;
+    box-shadow: $shadow-xl;
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+
+    a {
+        font-family: $font-heading;
+        font-size: $font-size-2xl;
+        font-weight: 700;
+        color: $color-primary;
+    }
+
+    img {
+        height: 48px;
+        width: auto;
+        margin-inline: auto;
+    }
+}
+
+.auth-title {
+    font-size: $font-size-2xl;
+    text-align: center;
+    margin-bottom: 0.25rem;
+    color: $color-text;
+}
+
+.auth-subtitle {
+    text-align: center;
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+    margin-bottom: $spacing-xl;
+}
+
+.auth-form {
+    .form-group { margin-bottom: $spacing-md; }
+    .btn { margin-top: $spacing-sm; }
+}
+
+.auth-links {
+    margin-top: $spacing-lg;
+    text-align: center;
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+
+    a {
+        color: $color-primary;
+        font-weight: 500;
+        &:hover { text-decoration: underline; }
+    }
+}
+
+.auth-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+    margin-bottom: $spacing-md;
+
+    &:hover { color: $color-text; }
+}

@@ -1,0 +1,154 @@
+@use 'variables' as *;
+// ─── Section Contact ──────────────────────────────────────────────────────────
+.section-contact {
+    padding-block: $spacing-3xl;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-3xl;
+
+    @include lg {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+// ─── Formulaire ──────────────────────────────────────────────────────────────
+.contact-form-wrapper {
+    background-color: #fff;
+    border-radius: $radius-xl;
+    padding: $spacing-2xl;
+    box-shadow: $shadow-lg;
+}
+
+.contact-form-title {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-xl;
+    color: $color-text;
+}
+
+// ─── Champs de formulaire ────────────────────────────────────────────────────
+.form-group {
+    margin-bottom: $spacing-md;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+
+    @include md { grid-template-columns: 1fr 1fr; }
+}
+
+.form-label {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $color-gray-700;
+    margin-bottom: 0.35rem;
+}
+
+.required { color: $color-error; }
+
+.form-input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: $font-size-base;
+    font-family: $font-body;
+    color: $color-text;
+    background-color: #fff;
+    border: 1.5px solid $color-gray-300;
+    border-radius: $radius-md;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+    appearance: none;
+
+    &:focus {
+        outline: none;
+        border-color: $color-primary;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    &::placeholder { color: $color-gray-400; }
+
+    &.is-error { border-color: $color-error; }
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form-error {
+    font-size: $font-size-xs;
+    color: $color-error;
+    margin-top: 0.25rem;
+}
+
+// ─── Infos contact ───────────────────────────────────────────────────────────
+.contact-info {
+    padding-top: $spacing-sm;
+}
+
+.contact-info-title {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-xl;
+    color: $color-text;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+}
+
+.contact-info-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background-color: $color-gray-100;
+    border-radius: $radius-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary;
+}
+
+.contact-info-label {
+    font-size: $font-size-xs;
+    color: $color-gray-500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.contact-info-value {
+    font-size: $font-size-base;
+    color: $color-text;
+    font-weight: 500;
+
+    a {
+        color: $color-primary;
+        &:hover { text-decoration: underline; }
+    }
+}
+
+.contact-social {
+    margin-top: $spacing-xl;
+
+    .social-links {
+        margin-top: $spacing-sm;
+
+        .social-link {
+            background-color: $color-gray-100;
+            color: $color-gray-700;
+
+            &:hover {
+                background-color: $color-primary;
+                color: #fff;
+            }
+        }
+    }
+}

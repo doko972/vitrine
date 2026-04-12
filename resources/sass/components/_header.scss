@@ -1,0 +1,174 @@
+@use 'variables' as *;
+// ─── Header ───────────────────────────────────────────────────────────────────
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: $z-header;
+    background-color: #fff;
+    box-shadow: $shadow-sm;
+    transition: box-shadow $transition-base, background-color $transition-base;
+
+    &.scrolled {
+        box-shadow: $shadow-md;
+    }
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    gap: $spacing-lg;
+}
+
+// ─── Logo ─────────────────────────────────────────────────────────────────────
+.header-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-primary;
+}
+
+// ─── Navigation desktop ───────────────────────────────────────────────────────
+.main-nav {
+    @include max-md { display: none; }
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+}
+
+.nav-link {
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $color-gray-700;
+    padding: 0.35rem 0;
+    position: relative;
+    transition: color $transition-fast;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $color-primary;
+        transition: width $transition-base;
+    }
+
+    &:hover,
+    &.active {
+        color: $color-primary;
+
+        &::after { width: 100%; }
+    }
+
+    &--dashboard {
+        background-color: $color-primary;
+        color: #fff !important;
+        padding: 0.5rem 1rem;
+        border-radius: $radius-md;
+        transition: all $transition-fast;
+
+        &::after { display: none; }
+
+        &:hover {
+            background-color: $color-secondary;
+        }
+    }
+}
+
+// ─── Burger ───────────────────────────────────────────────────────────────────
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: $radius-sm;
+
+    @include max-md { display: flex; }
+
+    &:hover { background-color: $color-gray-100; }
+}
+
+.burger-line {
+    width: 24px;
+    height: 2px;
+    background-color: $color-gray-700;
+    border-radius: $radius-full;
+    transition: transform $transition-base, opacity $transition-fast, width $transition-base;
+    transform-origin: center;
+}
+
+// État ouvert
+.burger.is-open {
+    .burger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .burger-line:nth-child(2) {
+        opacity: 0;
+        width: 0;
+    }
+    .burger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+// ─── Navigation mobile ───────────────────────────────────────────────────────
+.mobile-nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $transition-slow;
+    background-color: #fff;
+    border-top: 1px solid $color-gray-100;
+
+    &.is-open {
+        max-height: 400px;
+    }
+}
+
+.mobile-nav-list {
+    padding: $spacing-sm $spacing-sm $spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.mobile-nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: $font-size-base;
+    font-weight: 500;
+    color: $color-gray-700;
+    border-radius: $radius-md;
+    transition: all $transition-fast;
+
+    &:hover,
+    &.active {
+        background-color: $color-gray-50;
+        color: $color-primary;
+        padding-left: 1.25rem;
+    }
+}

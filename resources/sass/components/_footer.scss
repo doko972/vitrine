@@ -1,0 +1,130 @@
+@use 'variables' as *;
+// ─── Footer ───────────────────────────────────────────────────────────────────
+.site-footer {
+    background-color: $color-gray-900;
+    color: $color-gray-300;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+    padding-block: $spacing-3xl $spacing-2xl;
+
+    @include md {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include lg {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+}
+
+.footer-logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: $spacing-sm;
+    filter: brightness(10);
+}
+
+.footer-logo-text {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+    margin-bottom: $spacing-sm;
+}
+
+.footer-tagline {
+    font-size: $font-size-sm;
+    color: $color-gray-400;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+.footer-nav-title {
+    font-family: $font-heading;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-md;
+}
+
+.footer-nav {
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        a {
+            font-size: $font-size-sm;
+            color: $color-gray-400;
+            transition: color $transition-fast;
+
+            &:hover { color: #fff; }
+        }
+    }
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: $font-size-sm;
+    color: $color-gray-400;
+    margin-bottom: 0.75rem;
+
+    svg { flex-shrink: 0; margin-top: 2px; }
+
+    a {
+        color: $color-gray-400;
+        &:hover { color: #fff; }
+    }
+}
+
+// ─── Réseaux sociaux ─────────────────────────────────────────────────────────
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: $spacing-sm;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: $color-gray-800;
+    color: $color-gray-400;
+    border-radius: $radius-full;
+    transition: all $transition-fast;
+
+    &:hover {
+        background-color: $color-primary;
+        color: #fff;
+        transform: translateY(-3px);
+    }
+}
+
+// ─── Barre du bas ─────────────────────────────────────────────────────────────
+.footer-bottom {
+    border-top: 1px solid $color-gray-800;
+    padding-block: $spacing-md;
+}
+
+.footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        font-size: $font-size-xs;
+        color: $color-gray-500;
+    }
+}

@@ -1,0 +1,59 @@
+@use 'variables' as *;
+// ─── Grid de cartes ───────────────────────────────────────────────────────────
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    @include sm { grid-template-columns: repeat(2, 1fr); }
+    @include lg { grid-template-columns: repeat(3, 1fr); }
+
+    &--3 {
+        @include md { grid-template-columns: repeat(2, 1fr); }
+        @include lg { grid-template-columns: repeat(3, 1fr); }
+    }
+}
+
+// ─── Carte générique ─────────────────────────────────────────────────────────
+.card {
+    background-color: #fff;
+    border-radius: $radius-xl;
+    padding: $spacing-xl;
+    box-shadow: $shadow-md;
+    transition: transform $transition-base, box-shadow $transition-base;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: $shadow-xl;
+    }
+}
+
+// ─── Carte Service ────────────────────────────────────────────────────────────
+.card-service {
+    text-align: center;
+    border-top: 4px solid $color-primary;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: $spacing-md;
+    display: block;
+}
+
+.card-title {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    margin-bottom: $spacing-sm;
+    color: $color-text;
+}
+
+.card-text {
+    font-size: $font-size-base;
+    color: $color-gray-500;
+    line-height: 1.6;
+}
+
+// ─── Carte Valeur ─────────────────────────────────────────────────────────────
+.card-value {
+    border-left: 4px solid $color-accent;
+}

@@ -1,0 +1,412 @@
+@use 'variables' as *;
+// ─── Dashboard Layout ─────────────────────────────────────────────────────────
+.dashboard-body {
+    background-color: $color-gray-50;
+    font-family: $font-body;
+    color: $color-text;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+// ─── Sidebar ──────────────────────────────────────────────────────────────────
+.dashboard-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background-color: $color-gray-900;
+    color: $color-gray-300;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: $z-header;
+    transition: transform $transition-base;
+
+    @include max-lg {
+        transform: translateX(-100%);
+
+        &.is-open { transform: translateX(0); }
+    }
+}
+
+.sidebar-logo {
+    padding: $spacing-lg;
+    border-bottom: 1px solid $color-gray-800;
+    display: flex;
+    align-items: center;
+    min-height: 70px;
+}
+
+.sidebar-logo-img {
+    height: 36px;
+    width: auto;
+    filter: brightness(10);
+}
+
+.sidebar-logo-text {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: $spacing-md $spacing-sm;
+    overflow-y: auto;
+}
+
+.sidebar-section-title {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-gray-500;
+    padding: $spacing-sm $spacing-sm 0.25rem;
+    font-weight: 700;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem $spacing-sm;
+    font-size: $font-size-sm;
+    color: $color-gray-400;
+    border-radius: $radius-md;
+    transition: all $transition-fast;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-family: $font-body;
+    margin-bottom: 2px;
+
+    svg { flex-shrink: 0; }
+
+    &:hover {
+        background-color: $color-gray-800;
+        color: #fff;
+    }
+
+    &.active {
+        background-color: $color-primary;
+        color: #fff;
+    }
+}
+
+.sidebar-logout {
+    color: $color-error;
+
+    &:hover {
+        background-color: rgba($color-error, 0.1);
+        color: $color-error;
+    }
+}
+
+.sidebar-footer {
+    padding: $spacing-sm;
+    border-top: 1px solid $color-gray-800;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.badge-count {
+    margin-left: auto;
+    background-color: $color-error;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: $radius-full;
+    min-width: 20px;
+    text-align: center;
+}
+
+// ─── Dashboard Main ───────────────────────────────────────────────────────────
+.dashboard-main {
+    flex: 1;
+    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    @include max-lg { margin-left: 0; }
+}
+
+.dashboard-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: #fff;
+    border-bottom: 1px solid $color-gray-200;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding-inline: $spacing-xl;
+    box-shadow: $shadow-sm;
+
+    @include max-md { padding-inline: $spacing-md; }
+}
+
+.burger-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radius-sm;
+
+    @include max-lg { display: flex; }
+
+    &:hover { background-color: $color-gray-100; }
+
+    span {
+        width: 20px;
+        height: 2px;
+        background-color: $color-gray-700;
+        border-radius: $radius-full;
+    }
+}
+
+.topbar-title {
+    font-weight: 600;
+    font-size: $font-size-lg;
+    color: $color-text;
+    flex: 1;
+}
+
+.topbar-user {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+}
+
+.dashboard-content {
+    flex: 1;
+    padding: $spacing-2xl;
+
+    @include max-md { padding: $spacing-lg $spacing-md; }
+}
+
+// ─── Dashboard Cards stats ───────────────────────────────────────────────────
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+
+    @include lg { grid-template-columns: repeat(3, 1fr); }
+}
+
+.stat-card {
+    background-color: #fff;
+    border-radius: $radius-xl;
+    padding: $spacing-xl;
+    box-shadow: $shadow-sm;
+    border-left: 4px solid $color-primary;
+
+    &--warning { border-left-color: $color-warning; }
+    &--success  { border-left-color: $color-success; }
+}
+
+.stat-value {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $color-text;
+    font-family: $font-heading;
+}
+
+.stat-label {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+    margin-top: 0.25rem;
+}
+
+// ─── Dashboard Actions rapides ────────────────────────────────────────────────
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+
+    @include md { grid-template-columns: repeat(3, 1fr); }
+    @include xl { grid-template-columns: repeat(6, 1fr); }
+}
+
+.quick-action-card {
+    background-color: #fff;
+    border-radius: $radius-xl;
+    padding: $spacing-lg;
+    box-shadow: $shadow-sm;
+    text-align: center;
+    transition: all $transition-base;
+    cursor: pointer;
+    text-decoration: none;
+    color: $color-text;
+    border: 2px solid transparent;
+
+    &:hover {
+        border-color: $color-primary;
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+        color: $color-primary;
+    }
+
+    svg {
+        margin-inline: auto;
+        margin-bottom: $spacing-sm;
+        color: $color-primary;
+    }
+
+    p {
+        font-size: $font-size-sm;
+        font-weight: 500;
+    }
+}
+
+// ─── Formulaires dashboard ───────────────────────────────────────────────────
+.dashboard-form {
+    background-color: #fff;
+    border-radius: $radius-xl;
+    padding: $spacing-2xl;
+    box-shadow: $shadow-sm;
+    max-width: 760px;
+}
+
+.dashboard-form-title {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    margin-bottom: $spacing-xl;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $color-gray-200;
+    color: $color-text;
+}
+
+.dashboard-section-title {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $color-text;
+    margin-bottom: $spacing-lg;
+    margin-top: $spacing-xl;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid $color-gray-100;
+
+    &:first-child { margin-top: 0; }
+}
+
+// ─── Color picker ────────────────────────────────────────────────────────────
+.color-field {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    input[type="color"] {
+        width: 48px;
+        height: 42px;
+        padding: 3px;
+        border: 1.5px solid $color-gray-300;
+        border-radius: $radius-md;
+        cursor: pointer;
+        background: none;
+    }
+
+    .color-hex {
+        flex: 1;
+    }
+}
+
+// ─── Image preview ───────────────────────────────────────────────────────────
+.image-preview {
+    margin-top: $spacing-sm;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    img {
+        height: 60px;
+        width: auto;
+        max-width: 180px;
+        border-radius: $radius-md;
+        border: 1px solid $color-gray-200;
+        object-fit: contain;
+        background-color: $color-gray-50;
+        padding: 4px;
+    }
+}
+
+// ─── Tableau messages ────────────────────────────────────────────────────────
+.messages-table {
+    background-color: #fff;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    box-shadow: $shadow-sm;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        text-align: left;
+        padding: $spacing-sm $spacing-md;
+        font-size: $font-size-xs;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: $color-gray-500;
+        background-color: $color-gray-50;
+        border-bottom: 1px solid $color-gray-200;
+    }
+
+    td {
+        padding: $spacing-sm $spacing-md;
+        font-size: $font-size-sm;
+        border-bottom: 1px solid $color-gray-100;
+        vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr:hover td { background-color: $color-gray-50; }
+
+    .unread td { font-weight: 600; }
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: 600;
+
+    &-unread {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    &-read {
+        background-color: $color-gray-100;
+        color: $color-gray-500;
+    }
+}
+
+// ─── Sidebar overlay mobile ──────────────────────────────────────────────────
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: calc(#{$z-header} - 1);
+
+    &.is-open { display: block; }
+}

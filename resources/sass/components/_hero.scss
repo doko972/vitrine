@@ -1,0 +1,90 @@
+@use 'variables' as *;
+// ─── Hero ──────────────────────────────────────────────────────────────────────
+.hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background-color: $color-secondary;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+
+    @include max-md {
+        min-height: 75vh;
+        background-attachment: scroll;
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    padding-block: $spacing-3xl;
+    max-width: 720px;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+    line-height: 1.1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+.hero-subtitle {
+    font-size: clamp($font-size-lg, 2.5vw, $font-size-2xl);
+    font-weight: 300;
+    margin-bottom: $spacing-xl;
+    opacity: 0.9;
+    line-height: 1.5;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.15);
+}
+
+// Indicateur de scroll
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: $spacing-lg;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+
+    span {
+        display: block;
+        width: 24px;
+        height: 40px;
+        border: 2px solid rgba(255,255,255,0.6);
+        border-radius: $radius-full;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: $radius-full;
+            animation: scrollBounce 1.8s infinite;
+        }
+    }
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    50%       { transform: translateX(-50%) translateY(10px); opacity: 0.3; }
+}
