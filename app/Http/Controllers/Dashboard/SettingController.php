@@ -63,16 +63,26 @@ class SettingController extends Controller
     public function updateContent(Request $request)
     {
         $textFields = [
-            'hero_title', 'hero_subtitle', 'hero_cta_text', 'hero_cta_url',
-            'hero_visible', 'services_title', 'services_subtitle', 'services_visible',
+            'hero_type', 'hero_title', 'hero_subtitle', 'hero_cta_text', 'hero_cta_url',
+            'hero_visible',
+            'hero_slide_2_title', 'hero_slide_2_sub',
+            'hero_slide_3_title', 'hero_slide_3_sub',
+            'services_title', 'services_subtitle', 'services_visible',
             'about_title', 'about_text', 'about_visible',
             'values_title', 'values_visible',
             'cta_title', 'cta_text', 'cta_button_text', 'cta_visible',
             'team_title', 'team_visible', 'gallery_title', 'gallery_visible',
         ];
 
+        // Champs boolean (checkboxes) — défaut 0 si absent
+        $boolFields = ['hero_visible', 'services_visible', 'about_visible', 'values_visible', 'cta_visible', 'team_visible', 'gallery_visible'];
+
         foreach ($textFields as $key) {
-            $value = $request->has($key) ? $request->input($key) : '0';
+            if (in_array($key, $boolFields)) {
+                $value = $request->has($key) ? $request->input($key) : '0';
+            } else {
+                $value = $request->input($key, '');
+            }
             Setting::set($key, $value);
         }
 
@@ -87,7 +97,7 @@ class SettingController extends Controller
         }
 
         // Images
-        foreach (['hero_bg_image', 'about_image'] as $key) {
+        foreach (['hero_bg_image', 'hero_slide_2_img', 'hero_slide_3_img', 'about_image'] as $key) {
             if ($request->hasFile($key)) {
                 $this->handleImageUpload($request, $key);
             }
