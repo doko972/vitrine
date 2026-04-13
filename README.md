@@ -103,6 +103,7 @@ CREATE DATABASE vitrine CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```bash
 php artisan migrate
 php artisan db:seed
+php artisan db:seed --force
 ```
 
 Le seeder crée automatiquement :
